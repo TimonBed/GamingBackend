@@ -69,6 +69,7 @@ MIDDLEWARE = [
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "gamingbackend.onrender.com",
+    "https://gaming-frontend-one.vercel.app",
 ]
 
 ALLOWED_HOSTS = [
