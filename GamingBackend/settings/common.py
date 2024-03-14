@@ -74,6 +74,7 @@ CORS_ALLOWED_ORIGINS = [
 ALLOWED_HOSTS = [
     "gamingbackend.onrender.com",
     "127.0.0.1",
+    "localhost",
 ]
 
 STATIC_ROOT = BASE_DIR / 'static'
