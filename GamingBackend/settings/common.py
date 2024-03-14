@@ -70,6 +70,7 @@ MIDDLEWARE = [
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
+    "gamingbackend.onrender.com",
 ]
 
 ROOT_URLCONF = 'GamingBackend.urls'
