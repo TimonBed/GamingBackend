@@ -9,7 +9,7 @@ from rest_framework.viewsets import ModelViewSet
 from rest_framework.permissions import AllowAny
 
 from .models import CustomUser
-from .serializers import CustomUserSerializer, CreateUserSerializer
+from .serializers import CustomUserSerializer
 
 
 @authentication_classes([JWTAuthentication])
