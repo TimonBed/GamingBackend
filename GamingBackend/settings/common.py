@@ -23,8 +23,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-a&to=#q3j65vij+56$uvqi_-0jfj@t95ch57!a=k7)^qo0x%dj'
 
 
-ALLOWED_HOSTS = []
-
 APPEND_SLASH = False
 
 
@@ -70,8 +68,13 @@ MIDDLEWARE = [
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
-    "https://gamingbackend.onrender.com",
+    "gamingbackend.onrender.com",
 ]
+
+ALLOWED_HOSTS = [
+    "gamingbackend.onrender.com",
+]
+
 
 ROOT_URLCONF = 'GamingBackend.urls'
 
