@@ -21,3 +21,12 @@ class Game(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Reference(models.Model):
+    name = models.CharField(max_length=200)
+    game = models.ForeignKey(
+        Game, related_name='references', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
