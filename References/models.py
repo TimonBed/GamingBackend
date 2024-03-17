@@ -30,3 +30,22 @@ class Reference(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Content(models.Model):
+    title = models.CharField(max_length=200)
+
+    class Meta:
+        abstract = True
+
+
+class Image(Content):
+    image_file = models.ImageField(upload_to='images', blank=True, null=True)
+    reference_image = models.ForeignKey(
+        Reference, related_name='image_contents', on_delete=models.CASCADE)
+
+
+class Video(Content):
+    video_link = models.URLField(blank=True, null=True)
+    reference_video = models.ForeignKey(
+        Reference, related_name='video_contents', on_delete=models.CASCADE)

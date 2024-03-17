@@ -1,7 +1,7 @@
-from .models import GameCategory, Game, Reference
-from .serializer import GameCategorySerializer, GameSerializer, ReferenceSerializer
+from .models import GameCategory, Game, Reference, Content, Image, Video
+from .serializer import GameCategorySerializer, GameSerializer, ReferenceSerializer, ContentSerializer, ImageSerializer, VideoSerializer
 from rest_framework import viewsets
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.permissions import IsAuthenticatedOrReadOnly, AllowAny
 
 
 class GameCategoryViewSet(viewsets.ModelViewSet):
@@ -20,4 +20,16 @@ class GameViewSet(viewsets.ModelViewSet):
 class ReferenceViewSet(viewsets.ModelViewSet):
     queryset = Reference.objects.all()
     serializer_class = ReferenceSerializer
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [AllowAny]
+
+
+class ImageViewSet(viewsets.ModelViewSet):
+    queryset = Image.objects.all()
+    serializer_class = ImageSerializer
+    permission_classes = [AllowAny]
+
+
+class VideoViewSet(viewsets.ModelViewSet):
+    queryset = Video.objects.all()
+    serializer_class = VideoSerializer
+    permission_classes = [AllowAny]
