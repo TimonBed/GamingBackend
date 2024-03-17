@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+import os
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -107,6 +109,11 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+SECRET_KEY = os.environ['SECRET_KEY']
+
+CORS_ALLOWED_ORIGINS = os.environ['CORS_ALLOWED_ORIGINS'].split(' ')
+
+ALLOWED_HOSTS = os.environ['ALLOWED_HOSTS'].split(' ')
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/

@@ -3,6 +3,10 @@
 import os
 import sys
 
+if os.path.exists('.env'):
+    from dotenv import load_dotenv
+    load_dotenv()
+
 
 def main():
     """Run administrative tasks."""
