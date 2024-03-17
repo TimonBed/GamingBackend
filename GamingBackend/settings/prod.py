@@ -8,6 +8,6 @@ DEBUG = True
 
 SECRET_KEY = os.environ['SECRET_KEY']
 
-CORS_ALLOWED_ORIGINS = os.environ['CORS_ALLOWED_ORIGINS']
+CORS_ALLOWED_ORIGINS = os.environ['CORS_ALLOWED_ORIGINS'].split(' ')
 
-ALLOWED_HOSTS = os.environ['ALLOWED_HOSTS']
+ALLOWED_HOSTS = os.environ['ALLOWED_HOSTS'].split(' ')
