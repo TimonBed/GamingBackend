@@ -7,6 +7,7 @@ from rest_framework.decorators import authentication_classes, permission_classes
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.permissions import AllowAny
+from rest_framework import status
 
 from .models import CustomUser
 from .serializers import CustomUserSerializer
@@ -24,8 +25,8 @@ class IsAuthenticatedView(APIView):
 @permission_classes([IsAuthenticated])
 class GetCurrentUserView(APIView):
     def get(self, request):
-        serializer = CustomUserSerializer(request.user)
-        return Response(serializer.data)
+        serializer = CustomUserSerializer(request.user, context={'request': request})
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 class UserViewSet(ModelViewSet):
