@@ -2,7 +2,7 @@
 
 from django.contrib.auth.models import AbstractUser, Group, Permission
 from django.db import models
-
+from django_gravatar.helpers import get_gravatar_url, has_gravatar
 
 class CustomUser(AbstractUser):
     ROLE_CHOICES = (
@@ -14,6 +14,13 @@ class CustomUser(AbstractUser):
     role = models.CharField(
         max_length=10, choices=ROLE_CHOICES, default='guest')
     email = models.EmailField(unique=True)
+        
+    def gravatar_image(self, size=150):
+        if(has_gravatar(self.email)):
+            return get_gravatar_url(self.email, size=size)
+        else:
+            return None
+
 
     def __str__(self):
         return self.username

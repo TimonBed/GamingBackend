@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "edada07356a23bd1f311a5b84f783d0d04d106bfac0561b3c31d77cd3c3d8007"
+            "sha256": "4609d65ff5de44c892292a64b0e9c2fa26de3c31e16207ae37d8519e07e9d0e4"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -38,6 +38,7 @@
                 "sha256:5fb37580dcf4a262f9258c1f4373819aacca906431f505e4688e37f3a99195df"
             ],
             "index": "pypi",
+            "markers": "python_version >= '3.10'",
             "version": "==5.0.3"
         },
         "django-cors-headers": {
@@ -46,7 +47,16 @@
                 "sha256:0bf65ef45e606aff1994d35503e6b677c0b26cafff6506f8fd7187f3be840207"
             ],
             "index": "pypi",
+            "markers": "python_version >= '3.8'",
             "version": "==4.3.1"
+        },
+        "django-gravatar2": {
+            "hashes": [
+                "sha256:545a6c2c5c624c7635dec29c7bc0be1a2cb89c9b8821af8616ae9838827cc35b",
+                "sha256:c813280967511ced93eea0359f60e5369c35b3311efe565c3e5d4ab35c10c9ee"
+            ],
+            "index": "pypi",
+            "version": "==1.4.4"
         },
         "djangorestframework": {
             "hashes": [
@@ -54,6 +64,7 @@
                 "sha256:5fa616048a7ec287fdaab3148aa5151efb73f7f8be1e23a9d18484e61e672695"
             ],
             "index": "pypi",
+            "markers": "python_version >= '3.6'",
             "version": "==3.15.0"
         },
         "djangorestframework-simplejwt": {
@@ -62,6 +73,7 @@
                 "sha256:6c4bd37537440bc439564ebf7d6085e74c5411485197073f508ebdfa34bc9fae"
             ],
             "index": "pypi",
+            "markers": "python_version >= '3.8'",
             "version": "==5.3.1"
         },
         "gunicorn": {
@@ -70,6 +82,7 @@
                 "sha256:88ec8bff1d634f98e61b9f65bc4bf3cd918a90806c6f5c48bc5603849ec81033"
             ],
             "index": "pypi",
+            "markers": "python_version >= '3.5'",
             "version": "==21.2.0"
         },
         "packaging": {
@@ -152,6 +165,7 @@
                 "sha256:fe4c15f6c9285dc54ce6553a3ce908ed37c8f3825b5a51a15c91442bb955b868"
             ],
             "index": "pypi",
+            "markers": "python_version >= '3.8'",
             "version": "==10.2.0"
         },
         "psycopg2": {
@@ -171,6 +185,7 @@
                 "sha256:ff432630e510709564c01dafdbe996cb552e0b9f3f065eb89bdce5bd31fabf4c"
             ],
             "index": "pypi",
+            "markers": "python_version >= '3.7'",
             "version": "==2.9.9"
         },
         "pyjwt": {

@@ -3,10 +3,21 @@ from rest_framework import serializers
 
 
 class CustomUserSerializer(serializers.ModelSerializer):
+    gravatar = serializers.SerializerMethodField()
+
     class Meta:
         model = CustomUser
-        fields = 'id', 'username', 'email', 'role', "first_name", "last_name", "password"
+        fields = 'id', 'username', 'email', 'role', "first_name", "last_name", "password", "gravatar"
         extra_kwargs = {'password': {'write_only': True, 'required': False}}
+
+    def get_gravatar(self, obj):
+        request = self.context.get('request')
+        if(request is None):
+            print("Request is None")
+            return "None"
+        else:
+            size = 150
+            return obj.gravatar_image(size)
 
     def create(self, validated_data):
         user = CustomUser.objects.create_user(**validated_data)

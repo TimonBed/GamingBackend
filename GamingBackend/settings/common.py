@@ -26,6 +26,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 APPEND_SLASH = False
 
+# gravatar
+
+GRAVATAR_DEFAULT_IMAGE = "identicon"
+GRAVATAR_DEFAULT_SIZE = 150
 
 # Application definition
 
@@ -38,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     "rest_framework",
     "rest_framework_simplejwt",
+    "django_gravatar",
     "References",
     "Users",
 ]

@@ -12,6 +12,7 @@ gunicorn = "*"
 psycopg2 = "*"
 dj-database-url = "*"
 pillow = "*"
+django-gravatar2 = "*"
 
 [dev-packages]
 
