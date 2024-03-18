@@ -17,7 +17,7 @@ class GameSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Game
-        fields = ('id', 'game_category', 'name', 'release_date')
+        fields = ('id', 'game_category', 'name', 'release_date', 'developer')
 
 
 class ContentSerializer(serializers.ModelSerializer):

@@ -18,6 +18,7 @@ class Game(models.Model):
     game_category = models.ManyToManyField(
         GameCategory, related_name='games', blank=True)
     release_date = models.DateTimeField(blank=True, null=True)
+    developer = models.CharField(max_length=200, blank=True, null=True)
 
     def __str__(self):
         return self.name
