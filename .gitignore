@@ -3,3 +3,4 @@
 __pycache__/
 /images
 /images/image01.jpeg
+/db.sqlite3
