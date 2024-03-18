@@ -1,3 +1,5 @@
 /.env
 *.pyc
 __pycache__/
+/images
+/images/image01.jpeg
