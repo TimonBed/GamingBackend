@@ -7,13 +7,13 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly, AllowAny
 class GameCategoryViewSet(viewsets.ModelViewSet):
     queryset = GameCategory.objects.all()
     serializer_class = GameCategorySerializer
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [AllowAny]
 
 
 class GameViewSet(viewsets.ModelViewSet):
     queryset = Game.objects.all()
     serializer_class = GameSerializer
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [AllowAny]
     lookup_field = 'name'
 
 
