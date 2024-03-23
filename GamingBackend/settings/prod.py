@@ -24,3 +24,10 @@ STORAGES = {
         "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
     },
 }
+
+EMAIL_HOST = 'smtp.ionos.de'
+EMAIL_HOST_USER = "gamingbackend@bedynek.org"
+EMAIL_HOST_PASSWORD = "DUZ-qcg3mna7npv.ncm"
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER

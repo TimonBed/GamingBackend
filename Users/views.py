@@ -1,5 +1,7 @@
 
-
+from django.core.mail import send_mail, mail_admins, BadHeaderError, EmailMessage
+from django.shortcuts import render
+from templated_mail.mail import BaseEmailMessage
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
@@ -35,3 +37,22 @@ class UserViewSet(ModelViewSet):
     serializer_class = CustomUserSerializer
     # only admins
     permission_classes = [AllowAny]
+
+
+def send_email(request):
+    try:
+        message = BaseEmailMessage(
+            to=['bedynek.timon@gmail.com'],
+            template_name='emails/registrationlink.html',
+            context={
+                'subject': 'Gaming Backend Email Verification Link',
+                'testuser': 'Timon Bedynek',
+                'link': 'https://gaming-frontend-one.vercel.app',
+
+            }
+        )
+        message.send(to=['bedynek.timon@gmail.com'])
+
+    except BadHeaderError:
+        pass
+    return render(request, 'emails/registrationlink.html', {'message': 'Email sent successfully'})
