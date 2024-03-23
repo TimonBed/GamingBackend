@@ -38,28 +38,38 @@ class UserViewSet(ModelViewSet):
     # only admins
     permission_classes = [AllowAny]
 
-# create user and send mail
+
+class VerifyEmailView(APIView):
+    def get(self, request, token):
+        user = CustomUser.objects.filter(verification_token=token).first()
+        if user:
+            user.is_verified = True
+            user.save()
+            return Response({"message": "Email verified successfully"}, status=status.HTTP_200_OK)
+        return Response({"message": "Invalid token"}, status=status.HTTP_400_BAD_REQUEST)
 
 
 class RegistrationAPIView(APIView):
     def post(self, request):
         serializer = CustomUserSerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save()
-            send_email(request)
+            user = serializer.save()
+            user.generate_verification_token()
+            send_email(request, user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-def send_email(request):
+def send_email(request, user):
     try:
+        verification_link = f"https://gaming-frontend-one.vercel.app/verify/{user.verification_token}"
         message = BaseEmailMessage(
             to=['bedynek.timon@gmail.com'],
             template_name='emails/registrationlink.html',
             context={
                 'subject': 'Gaming Backend Email Verification Link',
                 'testuser': request.data['username'],
-                'link': 'https://gaming-frontend-one.vercel.app',
+                'link': verification_link
 
             }
         )
