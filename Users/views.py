@@ -41,12 +41,15 @@ class UserViewSet(ModelViewSet):
 
 class VerifyEmailView(APIView):
     def get(self, request, token):
-        user = CustomUser.objects.filter(verification_token=token).first()
-        if user:
-            user.is_verified = True
-            user.save()
-            return Response({"message": "Email verified successfully"}, status=status.HTTP_200_OK)
-        return Response({"message": "Invalid token"}, status=status.HTTP_400_BAD_REQUEST)
+        try:
+            user = CustomUser.objects.filter(verification_token=token).first()
+            if user:
+                user.is_verified = True
+                user.save()
+                return Response({"message": "Email verified successfully"}, status=status.HTTP_200_OK)
+            return Response({"message": "Invalid token"}, status=status.HTTP_400_BAD_REQUEST)
+        except Exception as e:
+            return Response({"message": e}, status=status.HTTP_400_BAD_REQUEST)
 
 
 class RegistrationAPIView(APIView):
