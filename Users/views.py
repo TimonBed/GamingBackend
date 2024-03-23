@@ -52,6 +52,20 @@ class VerifyEmailView(APIView):
             return Response({"message": e}, status=status.HTTP_400_BAD_REQUEST)
 
 
+class ResendEmailView(APIView):
+    def post(self, request):
+        try:
+            user = CustomUser.objects.filter(
+                email=request.data['email']).first()
+            if user:
+                user.generate_verification_token()
+                send_email(request, user)
+                return Response({"message": "Email sent successfully"}, status=status.HTTP_200_OK)
+            return Response({"message": "Email not found"}, status=status.HTTP_400_BAD_REQUEST)
+        except Exception as e:
+            return Response({"message": e}, status=status.HTTP_400_BAD_REQUEST)
+
+
 class RegistrationAPIView(APIView):
     def post(self, request):
         serializer = CustomUserSerializer(data=request.data)
