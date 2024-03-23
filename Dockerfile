@@ -1,5 +1,5 @@
 # Use an official Python runtime as the base image
-FROM python:3.10
+FROM python:3.11.4
 
 ENV PYTHONUNBUFFERED=1
 ENV PYTHONDONTWRITEBYTECODE=1

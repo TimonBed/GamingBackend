@@ -15,8 +15,10 @@ pillow = "*"
 django-gravatar2 = "*"
 boto3 = "*"
 django-storages = "*"
+django-redis = "*"
 
 [dev-packages]
+locust = "*"
 
 [requires]
 python_version = "3.11"
