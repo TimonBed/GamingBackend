@@ -85,7 +85,7 @@ def send_email(request, user):
             template_name='emails/registrationlink.html',
             context={
                 'subject': 'Gaming Backend Email Verification Link',
-                'testuser': request.data['username'],
+                'testuser': user.username,
                 'link': verification_link
 
             }
