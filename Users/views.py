@@ -38,6 +38,18 @@ class UserViewSet(ModelViewSet):
     # only admins
     permission_classes = [AllowAny]
 
+# create user and send mail
+
+
+class RegistrationAPIView(APIView):
+    def post(self, request):
+        serializer = CustomUserSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            send_email(request)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 def send_email(request):
     try:
@@ -46,12 +58,12 @@ def send_email(request):
             template_name='emails/registrationlink.html',
             context={
                 'subject': 'Gaming Backend Email Verification Link',
-                'testuser': 'Timon Bedynek',
+                'testuser': request.data['username'],
                 'link': 'https://gaming-frontend-one.vercel.app',
 
             }
         )
-        message.send(to=['bedynek.timon@gmail.com'])
+        message.send(to=[request.data['email']])
 
     except BadHeaderError:
         pass
