@@ -10,7 +10,7 @@ urlpatterns = [
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('token/verify/', TokenVerifyView.as_view(), name='token_verify'),
     path('verify/<str:token>/', VerifyEmailView.as_view(), name='verify_email'),
-    path('resend-email', ResendEmailView.as_view(), name='resend_email'),
+    path('resend-email/', ResendEmailView.as_view(), name='resend_email'),
     path('is-authenticated/', IsAuthenticatedView.as_view(),
          name='is_authenticated'),
     path('get-current-user/', GetCurrentUserView.as_view(), name='get_current_user'),
