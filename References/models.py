@@ -28,6 +28,7 @@ class Reference(models.Model):
     name = models.CharField(max_length=200)
     game = models.ForeignKey(
         Game, related_name='references', on_delete=models.CASCADE)
+    preview_image = models.CharField(max_length=200, blank=True, null=True)
 
     def __str__(self):
         return self.name

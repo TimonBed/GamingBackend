@@ -1,5 +1,6 @@
 from .models import Game, GameCategory, Reference, Content, Image, Video
 from rest_framework import serializers
+from rest_framework.viewsets import ModelViewSet
 
 
 class GameCategorySerializer(serializers.HyperlinkedModelSerializer):
@@ -40,7 +41,16 @@ class VideoSerializer(ContentSerializer):
             ('video_link', 'reference_video',)
 
 
-class ReferenceSerializer(serializers.HyperlinkedModelSerializer):
+class ReferenceListSerializer(serializers.ModelSerializer):
+    game = serializers.SlugRelatedField(
+        queryset=Game.objects.all(), slug_field='name')
+
+    class Meta:
+        model = Reference
+        fields = ('id', 'name', 'game')
+
+
+class ReferenceDetailSerializer(serializers.ModelSerializer):
     game = serializers.SlugRelatedField(
         queryset=Game.objects.all(), slug_field='name')
     image_contents = ImageSerializer(many=True, read_only=True)
