@@ -47,7 +47,7 @@ class ReferenceListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Reference
-        fields = ('id', 'name', 'game')
+        fields = ('id', 'name', 'game', 'preview_image')
 
 
 class ReferenceDetailSerializer(serializers.ModelSerializer):
@@ -58,4 +58,5 @@ class ReferenceDetailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Reference
-        fields = ('id', 'name', 'game', 'image_contents', 'video_contents')
+        fields = ('id', 'name', 'game', 'image_contents',
+                  'video_contents', 'preview_image')
