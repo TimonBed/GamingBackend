@@ -1,5 +1,7 @@
 from django.db import models
 from django.core.files.storage import default_storage
+from django.forms import ValidationError
+from django.core.validators import FileExtensionValidator
 
 
 class GameCategory(models.Model):
@@ -43,9 +45,11 @@ class Content(models.Model):
 
 
 class Image(Content):
-    image_file = models.ImageField(upload_to='images', blank=True, null=True)
+    image_file = models.ImageField(upload_to='images', blank=True, null=True, validators=[
+                                  FileExtensionValidator(allowed_extensions=['jpg', 'jpeg', 'webp'])])
     reference_image = models.ForeignKey(
         Reference, related_name='image_contents', on_delete=models.CASCADE)
+    
     
     def delete(self, *args, **kwargs):
         if self.image_file:
