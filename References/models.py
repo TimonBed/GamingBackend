@@ -28,9 +28,9 @@ class Game(models.Model):
 
 
 class Reference(models.Model):
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200, blank=True, null=True)
     game = models.ForeignKey(
-        Game, related_name='references', on_delete=models.CASCADE)
+        Game, related_name='references', on_delete=models.CASCADE, blank=True, null=True)
     preview_image = models.CharField(max_length=200, blank=True, null=True)
 
     def __str__(self):
