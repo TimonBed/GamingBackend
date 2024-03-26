@@ -4,6 +4,7 @@ from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, AllowAny
 from django.views.decorators.cache import cache_page
 from django.utils.decorators import method_decorator
+from django_filters.rest_framework import DjangoFilterBackend
 
 
 class GameCategoryViewSet(viewsets.ModelViewSet):
@@ -26,6 +27,8 @@ class GameViewSet(viewsets.ModelViewSet):
 class ReferenceViewSet(viewsets.ModelViewSet):
     queryset = Reference.objects.all()
     permission_classes = [AllowAny]
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['game']
 
     # @method_decorator(cache_page(60))
     # def dispatch(cls, *args, **kwargs):
