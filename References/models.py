@@ -36,6 +36,10 @@ class Reference(models.Model):
     def __str__(self):
         return self.name
 
+    def delete(self, *args, **kwargs):
+        for image in self.image_contents.all():
+            image.delete()
+        super().delete(*args, **kwargs)
 
 class Content(models.Model):
     title = models.CharField(max_length=200)
