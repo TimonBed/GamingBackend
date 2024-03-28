@@ -28,14 +28,18 @@ class Game(models.Model):
 
 
 class Reference(models.Model):
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200, blank=True, null=True)
     game = models.ForeignKey(
-        Game, related_name='references', on_delete=models.CASCADE)
+        Game, related_name='references', on_delete=models.CASCADE, blank=True, null=True)
     preview_image = models.CharField(max_length=200, blank=True, null=True)
 
     def __str__(self):
         return self.name
 
+    def delete(self, *args, **kwargs):
+        for image in self.image_contents.all():
+            image.delete()
+        super().delete(*args, **kwargs)
 
 class Content(models.Model):
     title = models.CharField(max_length=200)

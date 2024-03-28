@@ -17,6 +17,7 @@ boto3 = "*"
 django-storages = "*"
 django-redis = "*"
 django-templated-mail = "*"
+django-filter = "*"
 
 [dev-packages]
 locust = "*"
