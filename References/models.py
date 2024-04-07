@@ -1,7 +1,10 @@
+import os
+import PIL.Image
 from django.db import models
 from django.core.files.storage import default_storage
 from django.forms import ValidationError
 from django.core.validators import FileExtensionValidator
+from PIL import Image as PILImage
 
 
 class GameCategory(models.Model):
@@ -41,6 +44,7 @@ class Reference(models.Model):
             image.delete()
         super().delete(*args, **kwargs)
 
+
 class Content(models.Model):
     title = models.CharField(max_length=200)
 
@@ -50,17 +54,25 @@ class Content(models.Model):
 
 class Image(Content):
     image_file = models.ImageField(upload_to='images', blank=True, null=True, validators=[
-                                  FileExtensionValidator(allowed_extensions=['jpg', 'jpeg', 'webp'])])
+        FileExtensionValidator(allowed_extensions=['jpg', 'jpeg', 'webp'])])
     reference_image = models.ForeignKey(
         Reference, related_name='image_contents', on_delete=models.CASCADE)
-    
-    
+
     def delete(self, *args, **kwargs):
         if self.image_file:
             image_path = self.image_file.name
             default_storage.delete(image_path)
         super().delete(*args, **kwargs)
 
+    # convert to webp before saving
+    def save(self, *args, **kwargs):
+        if self.image_file:
+            image = PILImage.open(self.image_file)
+            webp_image_path = os.path.splitext(
+                self.image_file.name)[0] + '.webp'
+            webp_image = image.convert('RGB').save(webp_image_path, 'WEBP')
+            with open(webp_image_path, 'rb') as f:
+                self.image_file.save(webp_image_path, f, save=False)
 
 
 class Video(Content):
