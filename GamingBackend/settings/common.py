@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "corsheaders",
     "django_filters",
     "rest_framework",
     "rest_framework_simplejwt",
@@ -122,13 +123,13 @@ AUTH_PASSWORD_VALIDATORS = [
 
 SECRET_KEY = os.environ['SECRET_KEY']
 
-# CORS_ALLOWED_ORIGINS = os.environ['CORS_ALLOWED_ORIGINS'].split(' ')
+CORS_ALLOWED_ORIGINS = os.environ['CORS_ALLOWED_ORIGINS'].split(' ')
 
-# ALLOWED_HOSTS = os.environ['ALLOWED_HOSTS'].split(' ')
+ALLOWED_HOSTS = os.environ['ALLOWED_HOSTS'].split(' ')
 
-ALLOWED_HOSTS = ['*']
-CORS_ORIGIN_ALLOW_ALL = True
-CORS_ALLOWED_ORIGINS = ['*']
+# ALLOWED_HOSTS = ['*']
+# CORS_ORIGIN_ALLOW_ALL = True
+# CORS_ALLOWED_ORIGINS = ['*']
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
